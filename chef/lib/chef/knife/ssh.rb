@@ -223,6 +223,7 @@ class Chef
         window = 0
         session.servers_for.each do |server|
           tf.print("screen -t \"#{server.host}\" #{window} ssh ")
+          tf.print("-i #{config[:identity_file]} ") if config[:identity_file]
           server.user ? tf.puts("#{server.user}@#{server.host}") : tf.puts(server.host)
           window += 1
         end
